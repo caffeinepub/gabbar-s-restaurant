@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Playfair Display (Display / Headings) ─────────────────────────────── */
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── General Sans (Body / UI) ──────────────────────────────────────────── */
+@font-face {
+  font-family: "General Sans";
+  src: url("/assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* ─── Zaika-e-Punjab Palette ──────────────────────────────────────── */
+    /* Primary: deep saffron / amber */
+    --primary:          0.65 0.18 55;
+    --primary-foreground: 0.12 0.02 55;
+
+    /* Background: ivory / cream */
+    --background:       0.97 0.025 85;
+    --foreground:       0.15 0.02 55;
+
+    /* Card: warm off-white */
+    --card:             0.99 0.015 80;
+    --card-foreground:  0.15 0.02 55;
+
+    /* Popover */
+    --popover:          0.99 0.015 80;
+    --popover-foreground: 0.15 0.02 55;
+
+    /* Secondary: warm parchment */
+    --secondary:        0.92 0.04 80;
+    --secondary-foreground: 0.25 0.04 55;
+
+    /* Muted */
+    --muted:            0.93 0.03 80;
+    --muted-foreground: 0.50 0.05 60;
+
+    /* Accent: rich burgundy */
+    --accent:           0.35 0.14 10;
+    --accent-foreground: 0.97 0.02 85;
+
+    /* Destructive */
+    --destructive:      0.55 0.22 27;
+    --destructive-foreground: 0.98 0 0;
+
+    /* Border/Input */
+    --border:           0.82 0.06 70;
+    --input:            0.85 0.05 75;
+    --ring:             0.65 0.18 55;
+
+    /* Charts */
+    --chart-1: 0.65 0.18 55;
+    --chart-2: 0.35 0.14 10;
+    --chart-3: 0.72 0.15 70;
+    --chart-4: 0.50 0.12 40;
+    --chart-5: 0.80 0.10 85;
+
+    /* Sidebar */
+    --sidebar:          0.14 0.03 55;
+    --sidebar-foreground: 0.95 0.025 80;
+    --sidebar-primary:  0.65 0.18 55;
+    --sidebar-primary-foreground: 0.12 0.02 55;
+    --sidebar-accent:   0.22 0.04 55;
+    --sidebar-accent-foreground: 0.90 0.025 80;
+    --sidebar-border:   0.25 0.04 55;
+    --sidebar-ring:     0.65 0.18 55;
+
+    /* Custom restaurant tokens */
+    --gold:             0.75 0.16 80;
+    --gold-dark:        0.55 0.14 65;
+    --charcoal:         0.14 0.03 55;
+    --charcoal-mid:     0.22 0.03 55;
+    --charcoal-light:   0.32 0.03 55;
+    --ivory:            0.97 0.025 85;
+    --ivory-dark:       0.93 0.03 80;
+    --saffron:          0.65 0.18 55;
+    --saffron-deep:     0.55 0.17 45;
+    --burgundy:         0.35 0.14 10;
+    --burgundy-light:   0.45 0.12 10;
+    --cream-text:       0.88 0.035 80;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "General Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+}
+
+/* ── Section transitions ───────────────────────────────────────────────── */
+@layer utilities {
+  .font-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .font-body {
+    font-family: "General Sans", system-ui, sans-serif;
+  }
+
+  .bg-charcoal {
+    background-color: oklch(var(--charcoal));
+  }
+
+  .bg-charcoal-mid {
+    background-color: oklch(var(--charcoal-mid));
+  }
+
+  .bg-ivory {
+    background-color: oklch(var(--ivory));
+  }
+
+  .bg-saffron {
+    background-color: oklch(var(--saffron));
+  }
+
+  .bg-burgundy {
+    background-color: oklch(var(--burgundy));
+  }
+
+  .text-gold {
+    color: oklch(var(--gold));
+  }
+
+  .text-saffron {
+    color: oklch(var(--saffron));
+  }
+
+  .text-ivory {
+    color: oklch(var(--ivory));
+  }
+
+  .text-cream {
+    color: oklch(var(--cream-text));
+  }
+
+  .text-charcoal {
+    color: oklch(var(--charcoal));
+  }
+
+  .text-burgundy {
+    color: oklch(var(--burgundy));
+  }
+
+  .border-gold {
+    border-color: oklch(var(--gold));
+  }
+
+  .border-saffron {
+    border-color: oklch(var(--saffron));
+  }
+
+  .ornament-line {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .ornament-line::before,
+  .ornament-line::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+  }
+
+  /* Decorative noise texture overlay */
+  .noise-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+}
