@@ -24,30 +24,30 @@
   :root {
     --radius: 0.5rem;
 
-    /* ─── Zaika-e-Punjab Palette ──────────────────────────────────────── */
+    /* ─── Gabbar's Dark Palace Palette ───────────────────────────────── */
     /* Primary: deep saffron / amber */
     --primary:          0.65 0.18 55;
     --primary-foreground: 0.12 0.02 55;
 
-    /* Background: ivory / cream */
-    --background:       0.97 0.025 85;
-    --foreground:       0.15 0.02 55;
+    /* Background: deep charcoal (dark theme) */
+    --background:       0.14 0.03 55;
+    --foreground:       0.95 0.025 80;
 
-    /* Card: warm off-white */
-    --card:             0.99 0.015 80;
-    --card-foreground:  0.15 0.02 55;
+    /* Card: slightly lighter charcoal */
+    --card:             0.18 0.03 55;
+    --card-foreground:  0.95 0.025 80;
 
     /* Popover */
-    --popover:          0.99 0.015 80;
-    --popover-foreground: 0.15 0.02 55;
+    --popover:          0.18 0.03 55;
+    --popover-foreground: 0.95 0.025 80;
 
-    /* Secondary: warm parchment */
-    --secondary:        0.92 0.04 80;
-    --secondary-foreground: 0.25 0.04 55;
+    /* Secondary */
+    --secondary:        0.22 0.04 55;
+    --secondary-foreground: 0.88 0.035 80;
 
     /* Muted */
-    --muted:            0.93 0.03 80;
-    --muted-foreground: 0.50 0.05 60;
+    --muted:            0.20 0.03 55;
+    --muted-foreground: 0.65 0.04 70;
 
     /* Accent: rich burgundy */
     --accent:           0.35 0.14 10;

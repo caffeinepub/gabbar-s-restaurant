@@ -331,6 +331,13 @@ export default function MenuSection() {
                   {categoryLabels[category]}
                 </TabsTrigger>
               ))}
+              <TabsTrigger
+                value="menucard"
+                data-ocid="menu.menucard.tab"
+                className="font-body text-xs tracking-widest uppercase text-cream-text/60 data-[state=active]:bg-saffron data-[state=active]:text-charcoal data-[state=active]:font-semibold rounded-sm px-5 py-2.5 transition-all duration-200 hover:text-cream-text"
+              >
+                Menu Card
+              </TabsTrigger>
             </TabsList>
           </div>
 
@@ -360,8 +367,13 @@ export default function MenuSection() {
                     src={img.src}
                     alt={img.alt}
                     loading="lazy"
-                    className="w-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                    className="w-full h-auto object-contain group-hover:scale-[1.02] transition-transform duration-500"
                   />
+                  <div className="px-3 py-2 border-t border-saffron/10">
+                    <p className="font-body text-xs text-cream-text/60 tracking-wide">
+                      {img.alt}
+                    </p>
+                  </div>
                 </motion.div>
               ))}
             </div>

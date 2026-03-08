@@ -3,9 +3,9 @@ import Time "mo:core/Time";
 import List "mo:core/List";
 import Nat "mo:core/Nat";
 import Iter "mo:core/Iter";
-import Migration "migration";
 
-(with migration = Migration.run)
+
+
 actor {
   type Reservation = {
     name : Text;
