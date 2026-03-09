@@ -58,6 +58,7 @@ export default function HeroSection() {
         style={{
           backgroundImage:
             "url('/assets/generated/hero-banner.dim_1400x700.jpg')",
+          opacity: 0.75,
         }}
       />
       {/* Dark gradient overlay */}
@@ -77,7 +78,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-6"
         >
-          <span className="font-body text-xs tracking-[0.35em] uppercase text-gold/80 border border-gold/30 px-4 py-1.5 rounded-sm">
+          <span className="font-body text-xs tracking-[0.35em] uppercase text-gold border border-gold/30 px-4 py-1.5 rounded-sm">
             Since 2021
           </span>
         </motion.div>
@@ -110,7 +111,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="font-body text-sm text-cream-text/60 tracking-widest max-w-2xl mx-auto mb-6"
+          className="font-body text-sm text-ivory/90 tracking-widest max-w-2xl mx-auto mb-6"
         >
           Slow-cooked traditions · Tandoor-kissed flavours · Timeless recipes
         </motion.p>
@@ -159,7 +160,7 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold/50 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-gold/70 flex flex-col items-center gap-2"
       >
         <span className="font-body text-xs tracking-widest uppercase">
           Scroll

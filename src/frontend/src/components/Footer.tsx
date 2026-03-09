@@ -128,6 +128,16 @@ export default function Footer() {
                   Phone
                 </div>
                 <div>+91 79837 11781 / +91 90456 03226</div>
+                <div className="mt-2 text-xs text-cream-text/50">
+                  <span className="text-saffron/60">
+                    Group Booking / Catering:
+                  </span>{" "}
+                  +91 90456 03226
+                </div>
+                <div className="mt-1 text-xs text-cream-text/50">
+                  <span className="text-saffron/60">Support & Complaints:</span>{" "}
+                  +91 91939 97843
+                </div>
               </div>
               <div>
                 <div className="text-saffron/60 text-xs tracking-wider uppercase mb-1">

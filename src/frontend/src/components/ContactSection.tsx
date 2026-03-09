@@ -15,7 +15,12 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    lines: ["+91 79837 11781", "+91 90456 03226"],
+    lines: [
+      "+91 79837 11781",
+      "+91 90456 03226",
+      "Group Booking / Catering / Small Gathering: +91 90456 03226",
+      "Support & Complaints: +91 91939 97843",
+    ],
   },
   {
     icon: Mail,
