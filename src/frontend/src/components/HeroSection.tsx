@@ -61,7 +61,7 @@ export default function HeroSection() {
         }}
       />
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/60 to-charcoal/85" />
+      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/45 to-charcoal/75" />
       {/* Warm golden vignette */}
       <div className="absolute inset-0 bg-radial from-transparent via-transparent to-charcoal/50" />
 
@@ -69,7 +69,7 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-saffron to-transparent opacity-60" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20">
         {/* Small tagline */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -78,7 +78,7 @@ export default function HeroSection() {
           className="mb-6"
         >
           <span className="font-body text-xs tracking-[0.35em] uppercase text-gold/80 border border-gold/30 px-4 py-1.5 rounded-sm">
-            Est. 1987 · Authentic Mughlai Cuisine
+            Since 2021
           </span>
         </motion.div>
 
@@ -110,13 +110,9 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="font-body text-lg md:text-xl text-cream-text/90 tracking-wide max-w-2xl mx-auto mb-6"
+          className="font-body text-sm text-cream-text/60 tracking-widest max-w-2xl mx-auto mb-6"
         >
-          Authentic North Indian &amp; Mughlai Cuisine
-          <br />
-          <span className="text-sm text-cream-text/60 tracking-widest">
-            Slow-cooked traditions · Tandoor-kissed flavours · Timeless recipes
-          </span>
+          Slow-cooked traditions · Tandoor-kissed flavours · Timeless recipes
         </motion.p>
 
         {/* Punch line */}

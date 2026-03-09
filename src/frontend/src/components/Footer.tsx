@@ -43,7 +43,7 @@ export default function Footer() {
             </div>
             <p className="font-body text-sm text-cream-text/60 leading-relaxed max-w-xs mt-4">
               A culinary journey through the royal kitchens of the Mughals and
-              the warm hearths of Punjab. Authenticity served since 1987.
+              the warm hearths of Punjab. Authenticity served since 2021.
             </p>
 
             {/* Social */}
@@ -116,16 +116,18 @@ export default function Footer() {
                   Address
                 </div>
                 <div>
-                  Saifai, Etawah,
+                  Shop No. A-2, Inner Circle,
                   <br />
-                  Uttar Pradesh 206130
+                  Kisaan Bazaar Road, Near Clock Tower,
+                  <br />
+                  Saifai, Etawah, UP 206130
                 </div>
               </div>
               <div>
                 <div className="text-saffron/60 text-xs tracking-wider uppercase mb-1">
                   Phone
                 </div>
-                <div>+91 98765 43210</div>
+                <div>+91 79837 11781 / +91 90456 03226</div>
               </div>
               <div>
                 <div className="text-saffron/60 text-xs tracking-wider uppercase mb-1">

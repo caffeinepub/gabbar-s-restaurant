@@ -6,12 +6,16 @@ const contactInfo = [
   {
     icon: MapPin,
     label: "Address",
-    lines: ["Saifai, Etawah", "Uttar Pradesh 206130", "India"],
+    lines: [
+      "Shop No. A-2, Inner Circle",
+      "Kisaan Bazaar Road, Saifai",
+      "Near Clock Tower, Etawah, UP 206130",
+    ],
   },
   {
     icon: Phone,
     label: "Phone",
-    lines: ["+91 98765 43210", "+91 5688 123456"],
+    lines: ["+91 79837 11781", "+91 90456 03226"],
   },
   {
     icon: Mail,
@@ -240,10 +244,10 @@ export default function ContactSection() {
                   Visit Us
                 </div>
                 <div className="font-body text-sm text-cream-text/60 mt-1 tracking-wide">
-                  Saifai, Etawah, Uttar Pradesh
+                  Shop No. A-2, Kisaan Bazaar Road, Saifai
                 </div>
                 <div className="font-body text-xs text-saffron/70 mt-3 tracking-widest uppercase">
-                  Landmark: Saifai Medical University Road
+                  Landmark: Near Clock Tower
                 </div>
               </div>
               <div className="flex gap-2 mt-2">

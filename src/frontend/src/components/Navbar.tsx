@@ -4,11 +4,11 @@ import { useState } from "react";
 
 interface NavbarProps {
   scrolled: boolean;
+  onAdminClick: () => void;
 }
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "Menu", href: "#menu" },
   { label: "Order", href: "#order" },
   { label: "Gallery", href: "#gallery" },
   { label: "About", href: "#about" },
@@ -16,7 +16,7 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-export default function Navbar({ scrolled }: NavbarProps) {
+export default function Navbar({ scrolled, onAdminClick }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleLinkClick = (href: string) => {
@@ -77,6 +77,16 @@ export default function Navbar({ scrolled }: NavbarProps) {
               Reserve Table
             </button>
           </li>
+          <li>
+            <button
+              type="button"
+              data-ocid="nav.admin.link"
+              onClick={onAdminClick}
+              className="font-body text-xs tracking-widest uppercase text-cream-text/35 hover:text-cream-text/70 transition-colors duration-300"
+            >
+              Admin
+            </button>
+          </li>
         </ul>
 
         {/* Mobile hamburger */}
@@ -122,6 +132,19 @@ export default function Navbar({ scrolled }: NavbarProps) {
                   className="font-body text-sm tracking-wider uppercase px-5 py-2.5 border border-saffron text-saffron hover:bg-saffron hover:text-charcoal transition-all duration-300 inline-block rounded-sm font-medium"
                 >
                   Reserve Table
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  data-ocid="nav.mobile.admin.link"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    onAdminClick();
+                  }}
+                  className="font-body text-xs tracking-widest uppercase text-cream-text/40 hover:text-cream-text/70 transition-colors block w-full text-left"
+                >
+                  Admin Panel
                 </button>
               </li>
             </ul>

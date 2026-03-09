@@ -85,17 +85,18 @@ export default function AboutSection() {
 
             <div className="mt-6 space-y-5 font-body text-cream-text/80 leading-relaxed text-base">
               <p>
-                In 1987, Chef Harjinder Singh Sethi opened a small dhaba on the
-                GT Road outside Ludhiana, armed with three clay pots, a
-                wood-burning tandoor, and family recipes he had memorised
-                watching his mother cook in her village kitchen.
+                In 2021, Gabbar's opened its doors in Saifai, Etawah, with a
+                single vision — to bring the grandeur of royal Mughlai cooking
+                and the warmth of North Indian home kitchens to one table. Armed
+                with time-tested family recipes and a clay tandoor, the journey
+                began.
               </p>
               <p>
-                Over decades, those recipes were refined with influences from
-                the Mughal royal kitchens — the slow-cooked, spice-layered
-                techniques that once graced the tables of emperors. The{" "}
-                <em>dum</em> method, the saffron brines, the tenderising of meat
-                in papaya overnight — all preserved exactly as they were.
+                Every dish is inspired by the slow-cooked, spice-layered
+                techniques that once graced the tables of Mughal emperors — the{" "}
+                <em>dum</em> method, saffron brines, overnight marination — all
+                preserved exactly as they were, served with the generous spirit
+                of Punjab.
               </p>
               <p>
                 Today, Gabbar's is a destination for those who seek more than
@@ -143,7 +144,7 @@ export default function AboutSection() {
                 Since
               </span>
               <span className="font-display text-2xl font-bold text-gold leading-none">
-                1987
+                2021
               </span>
               <span className="font-body text-xs tracking-wider text-ivory/60 uppercase">
                 Saifai
@@ -164,7 +165,7 @@ export default function AboutSection() {
                   "Cooking is poetry — every spice a word, every dish a verse."
                 </blockquote>
                 <cite className="font-body text-xs text-gold/80 mt-2 block not-italic tracking-wider uppercase">
-                  — Chef H.S. Sethi, Founder
+                  — Gabbar's Kitchen, Saifai
                 </cite>
               </div>
             </div>
