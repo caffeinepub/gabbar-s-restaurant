@@ -47,8 +47,8 @@ export default function Navbar({ scrolled, onAdminClick }: NavbarProps) {
           >
             Gabbar's
           </span>
-          <span className="font-body text-cream-text text-xs tracking-[0.2em] uppercase mt-0.5 group-hover:text-gold transition-colors">
-            North Indian &amp; Mughlai
+          <span className="font-body text-saffron text-xs tracking-[0.1em] italic mt-0.5 group-hover:text-gold transition-colors">
+            Ab Goli Nahi... Khaana Kha!
           </span>
         </button>
 

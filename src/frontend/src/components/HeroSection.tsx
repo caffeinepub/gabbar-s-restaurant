@@ -1,5 +1,6 @@
 import { ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
+import { IMAGES } from "../assets/images";
 
 const OrnamentDivider = ({ light = false }: { light?: boolean }) => (
   <div
@@ -56,8 +57,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage:
-            "url('/assets/generated/hero-banner.dim_1400x700.jpg')",
+          backgroundImage: `url(${IMAGES.heroBanner})`,
           opacity: 0.75,
         }}
       />

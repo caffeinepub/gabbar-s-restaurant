@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { IMAGES } from "../assets/images";
 import { OrnamentDivider } from "./HeroSection";
 import VegNonVegIcon from "./VegNonVegIcon";
 
@@ -18,7 +19,7 @@ const featuredDishes: Dish[] = [
     description:
       "Tender tandoor-roasted chicken simmered in velvety tomato-butter-cream sauce. The undisputed Mughlai classic.",
     price: "₹520",
-    image: "/assets/generated/butter-chicken.dim_600x400.jpg",
+    image: IMAGES.butterChicken,
     badge: "Bestseller",
     isVeg: false,
   },
@@ -27,7 +28,7 @@ const featuredDishes: Dish[] = [
     description:
       "Long-grain Basmati sealed in a handi with saffron milk, whole spices, and caramelised onions.",
     price: "₹580",
-    image: "/assets/generated/chicken-biryani.dim_600x400.jpg",
+    image: IMAGES.chickenBiryani,
     badge: "Signature",
     isVeg: false,
   },
@@ -36,7 +37,7 @@ const featuredDishes: Dish[] = [
     description:
       "Black urad dal slow-cooked overnight, finished with cream and smoky butter. A Punjabi institution.",
     price: "₹340",
-    image: "/assets/generated/dal-makhani.dim_600x400.jpg",
+    image: IMAGES.dalMakhani,
     isVeg: true,
   },
   {
@@ -61,7 +62,7 @@ const featuredDishes: Dish[] = [
     description:
       "Pillowy naans leavened overnight, baked on the clay wall of the tandoor, brushed with butter and garlic.",
     price: "₹80",
-    image: "/assets/generated/naan-bread.dim_600x400.jpg",
+    image: IMAGES.naanBread,
     badge: "Most Ordered",
     isVeg: true,
   },
@@ -70,7 +71,7 @@ const featuredDishes: Dish[] = [
     description:
       "Milk-solid spheres soaked in rose-saffron syrup, crowned with crushed pistachios and silver vark.",
     price: "₹180",
-    image: "/assets/generated/gulab-jamun.dim_600x400.jpg",
+    image: IMAGES.gulabJamun,
     badge: "House Favourite",
     isVeg: true,
   },

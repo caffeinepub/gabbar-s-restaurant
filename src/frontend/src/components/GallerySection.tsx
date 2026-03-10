@@ -1,6 +1,7 @@
 import { ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useCallback, useEffect, useState } from "react";
+import { IMAGES } from "../assets/images";
 import { OrnamentDivider } from "./HeroSection";
 
 interface GalleryImage {
@@ -12,61 +13,61 @@ interface GalleryImage {
 
 const galleryImages: GalleryImage[] = [
   {
-    src: "/assets/generated/gallery-interior-1.dim_800x600.jpg",
+    src: IMAGES.galleryInterior1,
     alt: "Gabbar's restaurant interior",
     caption: "The Royal Dining Hall",
     span: "tall",
   },
   {
-    src: "/assets/generated/gallery-biryani.dim_800x600.jpg",
+    src: IMAGES.galleryBiryani,
     alt: "Dum Biryani — Gabbar's signature",
     caption: "Signature Dum Biryani",
     span: "normal",
   },
   {
-    src: "/assets/generated/gallery-starters.dim_800x600.jpg",
+    src: IMAGES.galleryStarters,
     alt: "Starters spread at Gabbar's",
     caption: "The Kebab Spread",
     span: "normal",
   },
   {
-    src: "/assets/generated/gallery-dining.dim_800x600.jpg",
+    src: IMAGES.galleryDining,
     alt: "Gabbar's dining area",
     caption: "An Evening at Gabbar's",
     span: "wide",
   },
   {
-    src: "/assets/generated/gallery-makhani.dim_800x600.jpg",
+    src: IMAGES.galleryMakhani,
     alt: "Butter Chicken Makhani",
     caption: "Murgh Makhani — The Classic",
     span: "normal",
   },
   {
-    src: "/assets/generated/gallery-tandoor.dim_800x600.jpg",
+    src: IMAGES.galleryTandoor,
     alt: "Live tandoor at Gabbar's",
     caption: "From Our Clay Tandoor",
     span: "tall",
   },
   {
-    src: "/assets/generated/seekh-kebab.dim_600x400.jpg",
+    src: IMAGES.seekhKebab,
     alt: "Seekh Kebab on skewers",
     caption: "Seekh Kebab — Chef's Pick",
     span: "normal",
   },
   {
-    src: "/assets/generated/chicken-biryani.dim_600x400.jpg",
+    src: IMAGES.chickenBiryani,
     alt: "Dum Biryani in handi",
     caption: "Handi Dum Biryani",
     span: "normal",
   },
   {
-    src: "/assets/generated/butter-chicken.dim_600x400.jpg",
+    src: IMAGES.butterChicken,
     alt: "Butter chicken closeup",
     caption: "Butter Chicken",
     span: "normal",
   },
   {
-    src: "/assets/generated/dal-makhani.dim_600x400.jpg",
+    src: IMAGES.dalMakhani,
     alt: "Dal Makhani in serving bowl",
     caption: "Dal Makhani Overnight",
     span: "normal",

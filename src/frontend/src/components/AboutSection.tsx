@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { IMAGES } from "../assets/images";
 import { OrnamentDivider } from "./HeroSection";
 
 const pillars = [
@@ -154,7 +155,7 @@ export default function AboutSection() {
             {/* Main image frame */}
             <div className="relative rounded-sm overflow-hidden aspect-[4/5] bg-charcoal-mid border border-saffron/20">
               <img
-                src="/assets/generated/biryani.dim_600x400.jpg"
+                src={IMAGES.biryani}
                 alt="Dum Biryani - our signature dish"
                 className="w-full h-full object-cover"
               />

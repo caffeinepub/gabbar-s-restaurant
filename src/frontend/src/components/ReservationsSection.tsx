@@ -11,6 +11,7 @@ import {
 import { AlertCircle, CheckCircle, Loader2 } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { IMAGES } from "../assets/images";
 import { useActor } from "../hooks/useActor";
 import { OrnamentDivider } from "./HeroSection";
 
@@ -156,7 +157,7 @@ export default function ReservationsSection() {
             {/* Decorative image */}
             <div className="mt-10 relative rounded-sm overflow-hidden h-48 border border-saffron/20">
               <img
-                src="/assets/generated/seekh-kebab.dim_600x400.jpg"
+                src={IMAGES.seekhKebab}
                 alt="Fine dining experience"
                 className="w-full h-full object-cover"
               />
