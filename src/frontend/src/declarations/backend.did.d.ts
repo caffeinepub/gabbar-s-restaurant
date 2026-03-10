@@ -11,7 +11,9 @@ import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
 export interface Order {
+  'id' : bigint,
   'customerName' : string,
+  'status' : OrderStatus,
   'orderType' : OrderType,
   'totalAmount' : bigint,
   'address' : string,
@@ -24,8 +26,14 @@ export interface OrderItem {
   'quantity' : bigint,
   'price' : bigint,
 }
+export type OrderStatus = { 'preparing' : null } |
+  { 'cancelled' : null } |
+  { 'pending' : null } |
+  { 'delivered' : null } |
+  { 'confirmed' : null };
 export type OrderType = { 'pickup' : null } |
   { 'delivery' : null };
+export interface PetpoojaConfig { 'apiKey' : string, 'outletId' : string }
 export interface Reservation {
   'date' : Time,
   'name' : string,
@@ -33,14 +41,45 @@ export interface Reservation {
   'guests' : bigint,
 }
 export type Time = bigint;
+export interface TransformationInput {
+  'context' : Uint8Array,
+  'response' : http_request_result,
+}
+export interface TransformationOutput {
+  'status' : bigint,
+  'body' : Uint8Array,
+  'headers' : Array<http_header>,
+}
+export interface UserProfile { 'name' : string }
+export type UserRole = { 'admin' : null } |
+  { 'user' : null } |
+  { 'guest' : null };
+export interface http_header { 'value' : string, 'name' : string }
+export interface http_request_result {
+  'status' : bigint,
+  'body' : Uint8Array,
+  'headers' : Array<http_header>,
+}
 export interface _SERVICE {
+  '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'addReservation' : ActorMethod<[string, Time, bigint, string], undefined>,
+  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'getAllReservations' : ActorMethod<[], Array<Reservation>>,
+  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
+  'getCallerUserRole' : ActorMethod<[], UserRole>,
   'getOrders' : ActorMethod<[], Array<Order>>,
+  'getPetpoojaConfig' : ActorMethod<[], [] | [PetpoojaConfig]>,
+  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
+  'isCallerAdmin' : ActorMethod<[], boolean>,
   'placeOrder' : ActorMethod<
     [string, string, string, OrderType, Array<OrderItem>, bigint],
-    undefined
+    { 'id' : bigint }
   >,
+  'pushOrderToPetpooja' : ActorMethod<[bigint], string>,
+  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
+  'savePetpoojaConfig' : ActorMethod<[string, string], undefined>,
+  'transform' : ActorMethod<[TransformationInput], TransformationOutput>,
+  'updateOrderStatus' : ActorMethod<[bigint, OrderStatus], boolean>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

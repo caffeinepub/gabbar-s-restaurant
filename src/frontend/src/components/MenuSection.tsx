@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { OrnamentDivider } from "./HeroSection";
+import VegNonVegIcon from "./VegNonVegIcon";
 
 interface Dish {
   name: string;
@@ -8,6 +9,7 @@ interface Dish {
   image?: string;
   badge?: string;
   gradient?: string;
+  isVeg?: boolean;
 }
 
 const featuredDishes: Dish[] = [
@@ -18,6 +20,7 @@ const featuredDishes: Dish[] = [
     price: "₹520",
     image: "/assets/generated/butter-chicken.dim_600x400.jpg",
     badge: "Bestseller",
+    isVeg: false,
   },
   {
     name: "Dum Biryani",
@@ -26,6 +29,7 @@ const featuredDishes: Dish[] = [
     price: "₹580",
     image: "/assets/generated/biryani.dim_600x400.jpg",
     badge: "Signature",
+    isVeg: false,
   },
   {
     name: "Dal Makhani",
@@ -33,6 +37,7 @@ const featuredDishes: Dish[] = [
       "Black urad dal slow-cooked overnight, finished with cream and smoky butter. A Punjabi institution.",
     price: "₹340",
     image: "/assets/generated/dal-makhani.dim_600x400.jpg",
+    isVeg: true,
   },
   {
     name: "Rogan Josh",
@@ -41,6 +46,7 @@ const featuredDishes: Dish[] = [
     price: "₹620",
     gradient: "from-red-950/80 to-rose-900/60",
     badge: "Kashmiri",
+    isVeg: false,
   },
   {
     name: "Paneer Lababdar",
@@ -48,6 +54,7 @@ const featuredDishes: Dish[] = [
       "Cottage cheese cubes in a rich, smoky makhani-style gravy — a vegetarian showstopper.",
     price: "₹420",
     gradient: "from-orange-900/70 to-amber-800/60",
+    isVeg: true,
   },
   {
     name: "Garlic Naan / Tandoori Roti",
@@ -56,6 +63,7 @@ const featuredDishes: Dish[] = [
     price: "₹80",
     image: "/assets/generated/naan-bread.dim_600x400.jpg",
     badge: "Most Ordered",
+    isVeg: true,
   },
   {
     name: "Gulab Jamun",
@@ -64,6 +72,7 @@ const featuredDishes: Dish[] = [
     price: "₹180",
     image: "/assets/generated/gulab-jamun.dim_600x400.jpg",
     badge: "House Favourite",
+    isVeg: true,
   },
   {
     name: "Kesar Thandai",
@@ -72,6 +81,7 @@ const featuredDishes: Dish[] = [
     price: "₹180",
     gradient: "from-amber-700/60 to-orange-700/50",
     badge: "Seasonal",
+    isVeg: true,
   },
 ];
 
@@ -124,7 +134,10 @@ function DishCard({ dish, index }: { dish: Dish; index: number }) {
       {/* Content */}
       <div className="p-5">
         <div className="flex items-start justify-between gap-3 mb-2">
-          <h3 className="font-display text-cream-text text-lg font-semibold leading-snug group-hover:text-gold transition-colors">
+          <h3 className="font-display text-cream-text text-lg font-semibold leading-snug group-hover:text-gold transition-colors flex items-center gap-2">
+            {dish.isVeg !== undefined && (
+              <VegNonVegIcon isVeg={dish.isVeg} size={14} className="mt-0.5" />
+            )}
             {dish.name}
           </h3>
           <span className="font-body text-saffron font-bold text-lg whitespace-nowrap flex-shrink-0">
@@ -145,11 +158,9 @@ export default function MenuSection() {
       id="menu"
       className="relative bg-charcoal py-24 px-4 sm:px-6 lg:px-8"
     >
-      {/* Decorative top border */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-saffron/40 to-transparent" />
 
       <div className="max-w-7xl mx-auto">
-        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -173,7 +184,6 @@ export default function MenuSection() {
           </p>
         </motion.div>
 
-        {/* Featured dishes grid — no tabs */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {featuredDishes.map((dish, i) => (
             <DishCard key={dish.name} dish={dish} index={i} />
@@ -181,7 +191,6 @@ export default function MenuSection() {
         </div>
       </div>
 
-      {/* Decorative bottom border */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-saffron/40 to-transparent" />
     </section>
   );

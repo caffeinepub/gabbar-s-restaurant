@@ -18,6 +18,7 @@ import { toast } from "sonner";
 import { OrderType } from "../backend.d";
 import { useActor } from "../hooks/useActor";
 import { OrnamentDivider } from "./HeroSection";
+import VegNonVegIcon from "./VegNonVegIcon";
 
 /* ─── Types ────────────────────────────────────────────────── */
 interface OrderDish {
@@ -150,21 +151,21 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Murg Tandoori – Jarda",
       description: "Gabbar Mange – Murg Tandoori Tikka, Jarda style.",
       price: 290,
-      image: "/assets/generated/tandoori-chicken.dim_600x400.jpg",
+      image: "/assets/generated/afghani-chicken.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
       name: "Murg Tandoori – Cheese Tikka",
       description: "Tandoori chicken tikka with cheese marinade.",
       price: 295,
-      image: "/assets/generated/tandoori-chicken.dim_600x400.jpg",
+      image: "/assets/generated/butter-chicken.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
       name: "Murg Tandoori – Malai",
       description: "Creamy malai chicken tikka from the tandoor.",
       price: 280,
-      image: "/assets/generated/afghani-chicken.dim_600x400.jpg",
+      image: "/assets/generated/chicken-seekh.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
@@ -305,13 +306,13 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Rice Plain",
       description: "Arre O Samba, Laa to Zara Biryani – steamed plain rice.",
       price: 99,
-      image: "/assets/generated/veg-biryani.dim_600x400.jpg",
+      image: "/assets/generated/biryani.dim_600x400.jpg",
     },
     {
       name: "Rice Jeera",
       description: "Cumin tempered steamed rice.",
       price: 109,
-      image: "/assets/generated/veg-biryani.dim_600x400.jpg",
+      image: "/assets/generated/biryani.dim_600x400.jpg",
     },
     {
       name: "Matar Pulao",
@@ -329,7 +330,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Paneer Pulao",
       description: "Paneer and basmati rice cooked with spices.",
       price: 139,
-      image: "/assets/generated/veg-biryani.dim_600x400.jpg",
+      image: "/assets/generated/paneer-tikka.dim_600x400.jpg",
     },
     {
       name: "Veg Dum Biryani",
@@ -341,7 +342,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Chaap Dum Biryani",
       description: "Soya chaap layered dum biryani.",
       price: 179,
-      image: "/assets/generated/veg-biryani.dim_600x400.jpg",
+      image: "/assets/generated/soya-chaap.dim_600x400.jpg",
     },
     {
       name: "Egg Dum Biryani",
@@ -401,7 +402,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Veg Fried Rice",
       description: "Stir-fried rice with mixed vegetables.",
       price: 139,
-      image: "/assets/generated/veg-biryani.dim_600x400.jpg",
+      image: "/assets/generated/biryani.dim_600x400.jpg",
     },
     {
       name: "Chilly Paneer (Dry/Gravy)",
@@ -413,7 +414,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Paneer Fry",
       description: "Crispy fried paneer with chilli-soy glaze.",
       price: 189,
-      image: "/assets/generated/chilly-paneer.dim_600x400.jpg",
+      image: "/assets/generated/paneer-pakora.dim_600x400.jpg",
     },
     {
       name: "Fry Chaap",
@@ -437,7 +438,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Veg Manchurian",
       description: "Crispy vegetable balls in Manchurian gravy.",
       price: 179,
-      image: "/assets/generated/chilly-paneer.dim_600x400.jpg",
+      image: "/assets/generated/hara-bhara-kabab.dim_600x400.jpg",
     },
     {
       name: "Veg Spring Roll",
@@ -449,7 +450,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Paneer Finger",
       description: "Crispy paneer fingers with dipping sauce.",
       price: 209,
-      image: "/assets/generated/chilly-paneer.dim_600x400.jpg",
+      image: "/assets/generated/paneer-pakora.dim_600x400.jpg",
     },
     {
       name: "Chilli Chaap",
@@ -479,13 +480,13 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Egg Noodles",
       description: "Noodles stir-fried with eggs.",
       price: 149,
-      image: "/assets/generated/hakka-noodles.dim_600x400.jpg",
+      image: "/assets/generated/egg-roll.dim_600x400.jpg",
     },
     {
       name: "Chicken Garlic Noodle",
       description: "Noodles with chicken in garlic sauce.",
       price: 169,
-      image: "/assets/generated/hakka-noodles.dim_600x400.jpg",
+      image: "/assets/generated/chicken-roll.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
@@ -506,14 +507,14 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Chicken Balls",
       description: "Crispy chicken balls in soy-chilli glaze.",
       price: 199,
-      image: "/assets/generated/chilly-chicken.dim_600x400.jpg",
+      image: "/assets/generated/chicken-lollipop.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
       name: "Chicken Manchurian",
       description: "Crispy chicken in Manchurian gravy.",
       price: 249,
-      image: "/assets/generated/chilly-chicken.dim_600x400.jpg",
+      image: "/assets/generated/afghani-chicken.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
@@ -541,7 +542,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Chicken Beans Fried",
       description: "Chicken stir-fried with beans.",
       price: 249,
-      image: "/assets/generated/chilly-chicken.dim_600x400.jpg",
+      image: "/assets/generated/chicken-seekh.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
@@ -685,14 +686,14 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Malai Chaap Roll",
       description: "Malai soya chaap roll.",
       price: 129,
-      image: "/assets/generated/veg-roll.dim_600x400.jpg",
+      image: "/assets/generated/soya-chaap.dim_600x400.jpg",
       badge: "Veg",
     },
     {
       name: "Masala Chaap Roll",
       description: "Masala soya chaap wrapped in roti.",
       price: 119,
-      image: "/assets/generated/veg-roll.dim_600x400.jpg",
+      image: "/assets/generated/soya-chaap.dim_600x400.jpg",
       badge: "Veg",
     },
     {
@@ -712,14 +713,14 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Chicken Seekh Roll",
       description: "Chicken seekh kabab roll.",
       price: 159,
-      image: "/assets/generated/chicken-roll.dim_600x400.jpg",
+      image: "/assets/generated/chicken-seekh.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
       name: "Chicken Dragon Roll",
       description: "Spicy dragon-sauce chicken roll.",
       price: 179,
-      image: "/assets/generated/chicken-roll.dim_600x400.jpg",
+      image: "/assets/generated/chicken-roll-2.dim_600x400.jpg",
       badge: "Non-Veg",
     },
   ],
@@ -868,7 +869,14 @@ function OrderItemCard({
       {/* Content */}
       <div className="p-4 flex flex-col flex-1">
         <div className="flex items-start justify-between gap-2 mb-1">
-          <h3 className="font-display text-cream-text text-base font-semibold leading-snug group-hover:text-gold transition-colors">
+          <h3 className="font-display text-cream-text text-base font-semibold leading-snug group-hover:text-gold transition-colors flex items-center gap-1.5">
+            {(dish.badge === "Veg" || dish.badge === "Non-Veg") && (
+              <VegNonVegIcon
+                isVeg={dish.badge === "Veg"}
+                size={13}
+                className="mt-0.5 flex-shrink-0"
+              />
+            )}
             {dish.name}
           </h3>
           <span className="font-body text-saffron font-bold text-base whitespace-nowrap flex-shrink-0">

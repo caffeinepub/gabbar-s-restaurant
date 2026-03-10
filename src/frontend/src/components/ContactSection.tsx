@@ -1,8 +1,17 @@
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Navigation, Phone } from "lucide-react";
 import { motion } from "motion/react";
 import { OrnamentDivider } from "./HeroSection";
 
-const contactInfo = [
+type ContactLine = string | { label: string; tel: string; display: string };
+
+const MAPS_URL =
+  "https://www.google.com/maps/dir/?api=1&destination=Shop+No.+A-2+Inner+Circle+Kisaan+Bazaar+Road+Near+Clock+Tower+Saifai+Etawah+UP+206130";
+
+const contactInfo: {
+  icon: typeof MapPin;
+  label: string;
+  lines: ContactLine[];
+}[] = [
   {
     icon: MapPin,
     label: "Address",
@@ -16,10 +25,18 @@ const contactInfo = [
     icon: Phone,
     label: "Phone",
     lines: [
-      "+91 79837 11781",
-      "+91 90456 03226",
-      "Group Booking / Catering / Small Gathering: +91 90456 03226",
-      "Support & Complaints: +91 91939 97843",
+      { label: "", tel: "+917983711781", display: "+91 79837 11781" },
+      { label: "", tel: "+919045603226", display: "+91 90456 03226" },
+      {
+        label: "Group Booking / Catering / Small Gathering: ",
+        tel: "+919045603226",
+        display: "+91 90456 03226",
+      },
+      {
+        label: "Support & Complaints: ",
+        tel: "+919193997843",
+        display: "+91 91939 97843",
+      },
     ],
   },
   {
@@ -35,6 +52,34 @@ const hours = [
     time: "11:00 AM – 11:00 PM",
   },
 ];
+
+function renderLine(line: ContactLine, key: string) {
+  if (typeof line === "string") {
+    return (
+      <p
+        key={key}
+        className="font-body text-sm text-cream-text/70 leading-relaxed"
+      >
+        {line}
+      </p>
+    );
+  }
+  return (
+    <p
+      key={key}
+      className="font-body text-sm text-cream-text/70 leading-relaxed"
+    >
+      {line.label && <span>{line.label}</span>}
+      <a
+        href={`tel:${line.tel}`}
+        data-ocid="contact.phone.link"
+        className="text-saffron hover:text-gold underline underline-offset-2 decoration-saffron/40 hover:decoration-gold transition-colors duration-200"
+      >
+        {line.display}
+      </a>
+    </p>
+  );
+}
 
 export default function ContactSection() {
   return (
@@ -66,7 +111,6 @@ export default function ContactSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Contact info cards */}
           {contactInfo.map((info, i) => (
             <motion.div
               key={info.label}
@@ -85,14 +129,9 @@ export default function ContactSection() {
                 </h3>
               </div>
               <div className="space-y-1 pl-[52px]">
-                {info.lines.map((line) => (
-                  <p
-                    key={line}
-                    className="font-body text-sm text-cream-text/70 leading-relaxed"
-                  >
-                    {line}
-                  </p>
-                ))}
+                {info.lines.map((line, li) =>
+                  renderLine(line, `${info.label}-${li}`),
+                )}
               </div>
             </motion.div>
           ))}
@@ -109,7 +148,6 @@ export default function ContactSection() {
             className="lg:col-span-3 relative rounded-sm overflow-hidden bg-charcoal-mid border border-saffron/20 min-h-64"
             data-ocid="contact.map_marker"
           >
-            {/* Decorative map-style background */}
             <div className="absolute inset-0 opacity-10">
               <svg
                 viewBox="0 0 600 320"
@@ -118,7 +156,6 @@ export default function ContactSection() {
                 aria-hidden="true"
                 role="presentation"
               >
-                {/* Road grid */}
                 <line
                   x1="0"
                   y1="80"
@@ -183,7 +220,6 @@ export default function ContactSection() {
                   stroke="oklch(0.65 0.18 55)"
                   strokeWidth="2"
                 />
-                {/* Blocks */}
                 <rect
                   x="110"
                   y="90"
@@ -235,7 +271,6 @@ export default function ContactSection() {
               </svg>
             </div>
 
-            {/* Center content */}
             <div className="relative z-10 flex flex-col items-center justify-center h-full min-h-64 gap-4 py-12">
               <div className="w-16 h-16 bg-saffron rounded-full flex items-center justify-center shadow-2xl shadow-saffron/30 animate-pulse">
                 <MapPin
@@ -260,9 +295,20 @@ export default function ContactSection() {
                 <div className="w-2 h-2 rounded-full bg-saffron/40 animate-ping [animation-delay:0.3s]" />
                 <div className="w-2 h-2 rounded-full bg-saffron/40 animate-ping [animation-delay:0.6s]" />
               </div>
+
+              {/* Get Directions button */}
+              <a
+                href={MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-ocid="contact.directions.button"
+                className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 bg-saffron hover:bg-gold text-charcoal font-display font-semibold text-sm rounded-sm transition-colors duration-200 shadow-lg shadow-saffron/25 hover:shadow-gold/30"
+              >
+                <Navigation size={15} />
+                Get Directions
+              </a>
             </div>
 
-            {/* Corner accents */}
             <div className="absolute top-3 left-3 w-8 h-8 border-t border-l border-saffron/30" />
             <div className="absolute bottom-3 right-3 w-8 h-8 border-b border-r border-saffron/30" />
           </motion.div>
@@ -300,7 +346,6 @@ export default function ContactSection() {
               ))}
             </div>
 
-            {/* Special note */}
             <div className="mt-6 bg-saffron/10 border border-saffron/20 rounded-sm p-4">
               <p className="font-body text-xs text-saffron/80 leading-relaxed">
                 🎉 Special extended hours on public holidays and festive

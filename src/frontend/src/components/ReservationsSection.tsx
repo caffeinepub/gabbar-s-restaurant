@@ -122,7 +122,11 @@ export default function ReservationsSection() {
               {[
                 { label: "Open Daily", value: "11:00 AM – 11:00 PM" },
                 { label: "Private Dining", value: "By appointment" },
-                { label: "Group Bookings (12+)", value: "+91 98765 43210" },
+                {
+                  label: "Group Bookings (12+)",
+                  value: "+91 90456 03226",
+                  tel: "+919045603226",
+                },
               ].map((info) => (
                 <div
                   key={info.label}
@@ -133,7 +137,17 @@ export default function ReservationsSection() {
                     {info.label}
                   </span>
                   <span className="font-display text-sm font-semibold text-ivory">
-                    {info.value}
+                    {"tel" in info && info.tel ? (
+                      <a
+                        href={`tel:${info.tel}`}
+                        data-ocid="reservations.phone.link"
+                        className="text-saffron hover:text-gold underline underline-offset-2 decoration-saffron/40 hover:decoration-gold transition-colors duration-200"
+                      >
+                        {info.value}
+                      </a>
+                    ) : (
+                      info.value
+                    )}
                   </span>
                 </div>
               ))}

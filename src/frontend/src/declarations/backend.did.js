@@ -9,11 +9,24 @@
 import { IDL } from '@icp-sdk/core/candid';
 
 export const Time = IDL.Int;
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
 export const Reservation = IDL.Record({
   'date' : Time,
   'name' : IDL.Text,
   'phone' : IDL.Text,
   'guests' : IDL.Nat,
+});
+export const UserProfile = IDL.Record({ 'name' : IDL.Text });
+export const OrderStatus = IDL.Variant({
+  'preparing' : IDL.Null,
+  'cancelled' : IDL.Null,
+  'pending' : IDL.Null,
+  'delivered' : IDL.Null,
+  'confirmed' : IDL.Null,
 });
 export const OrderType = IDL.Variant({
   'pickup' : IDL.Null,
@@ -25,7 +38,9 @@ export const OrderItem = IDL.Record({
   'price' : IDL.Nat,
 });
 export const Order = IDL.Record({
+  'id' : IDL.Nat,
   'customerName' : IDL.Text,
+  'status' : OrderStatus,
   'orderType' : OrderType,
   'totalAmount' : IDL.Nat,
   'address' : IDL.Text,
@@ -33,27 +48,82 @@ export const Order = IDL.Record({
   'phone' : IDL.Text,
   'items' : IDL.Vec(OrderItem),
 });
+export const PetpoojaConfig = IDL.Record({
+  'apiKey' : IDL.Text,
+  'outletId' : IDL.Text,
+});
+export const http_header = IDL.Record({
+  'value' : IDL.Text,
+  'name' : IDL.Text,
+});
+export const http_request_result = IDL.Record({
+  'status' : IDL.Nat,
+  'body' : IDL.Vec(IDL.Nat8),
+  'headers' : IDL.Vec(http_header),
+});
+export const TransformationInput = IDL.Record({
+  'context' : IDL.Vec(IDL.Nat8),
+  'response' : http_request_result,
+});
+export const TransformationOutput = IDL.Record({
+  'status' : IDL.Nat,
+  'body' : IDL.Vec(IDL.Nat8),
+  'headers' : IDL.Vec(http_header),
+});
 
 export const idlService = IDL.Service({
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'addReservation' : IDL.Func([IDL.Text, Time, IDL.Nat, IDL.Text], [], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'getAllReservations' : IDL.Func([], [IDL.Vec(Reservation)], ['query']),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getOrders' : IDL.Func([], [IDL.Vec(Order)], ['query']),
+  'getPetpoojaConfig' : IDL.Func([], [IDL.Opt(PetpoojaConfig)], ['query']),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'placeOrder' : IDL.Func(
       [IDL.Text, IDL.Text, IDL.Text, OrderType, IDL.Vec(OrderItem), IDL.Nat],
-      [],
+      [IDL.Record({ 'id' : IDL.Nat })],
       [],
     ),
+  'pushOrderToPetpooja' : IDL.Func([IDL.Nat], [IDL.Text], []),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+  'savePetpoojaConfig' : IDL.Func([IDL.Text, IDL.Text], [], []),
+  'transform' : IDL.Func(
+      [TransformationInput],
+      [TransformationOutput],
+      ['query'],
+    ),
+  'updateOrderStatus' : IDL.Func([IDL.Nat, OrderStatus], [IDL.Bool], []),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
   const Time = IDL.Int;
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
   const Reservation = IDL.Record({
     'date' : Time,
     'name' : IDL.Text,
     'phone' : IDL.Text,
     'guests' : IDL.Nat,
+  });
+  const UserProfile = IDL.Record({ 'name' : IDL.Text });
+  const OrderStatus = IDL.Variant({
+    'preparing' : IDL.Null,
+    'cancelled' : IDL.Null,
+    'pending' : IDL.Null,
+    'delivered' : IDL.Null,
+    'confirmed' : IDL.Null,
   });
   const OrderType = IDL.Variant({ 'pickup' : IDL.Null, 'delivery' : IDL.Null });
   const OrderItem = IDL.Record({
@@ -62,7 +132,9 @@ export const idlFactory = ({ IDL }) => {
     'price' : IDL.Nat,
   });
   const Order = IDL.Record({
+    'id' : IDL.Nat,
     'customerName' : IDL.Text,
+    'status' : OrderStatus,
     'orderType' : OrderType,
     'totalAmount' : IDL.Nat,
     'address' : IDL.Text,
@@ -70,16 +142,55 @@ export const idlFactory = ({ IDL }) => {
     'phone' : IDL.Text,
     'items' : IDL.Vec(OrderItem),
   });
+  const PetpoojaConfig = IDL.Record({
+    'apiKey' : IDL.Text,
+    'outletId' : IDL.Text,
+  });
+  const http_header = IDL.Record({ 'value' : IDL.Text, 'name' : IDL.Text });
+  const http_request_result = IDL.Record({
+    'status' : IDL.Nat,
+    'body' : IDL.Vec(IDL.Nat8),
+    'headers' : IDL.Vec(http_header),
+  });
+  const TransformationInput = IDL.Record({
+    'context' : IDL.Vec(IDL.Nat8),
+    'response' : http_request_result,
+  });
+  const TransformationOutput = IDL.Record({
+    'status' : IDL.Nat,
+    'body' : IDL.Vec(IDL.Nat8),
+    'headers' : IDL.Vec(http_header),
+  });
   
   return IDL.Service({
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'addReservation' : IDL.Func([IDL.Text, Time, IDL.Nat, IDL.Text], [], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'getAllReservations' : IDL.Func([], [IDL.Vec(Reservation)], ['query']),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getOrders' : IDL.Func([], [IDL.Vec(Order)], ['query']),
+    'getPetpoojaConfig' : IDL.Func([], [IDL.Opt(PetpoojaConfig)], ['query']),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'placeOrder' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text, OrderType, IDL.Vec(OrderItem), IDL.Nat],
-        [],
+        [IDL.Record({ 'id' : IDL.Nat })],
         [],
       ),
+    'pushOrderToPetpooja' : IDL.Func([IDL.Nat], [IDL.Text], []),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
+    'savePetpoojaConfig' : IDL.Func([IDL.Text, IDL.Text], [], []),
+    'transform' : IDL.Func(
+        [TransformationInput],
+        [TransformationOutput],
+        ['query'],
+      ),
+    'updateOrderStatus' : IDL.Func([IDL.Nat, OrderStatus], [IDL.Bool], []),
   });
 };
 

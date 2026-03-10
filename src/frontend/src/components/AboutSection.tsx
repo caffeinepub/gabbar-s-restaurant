@@ -138,7 +138,7 @@ export default function AboutSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            {/* Since 1987 badge */}
+            {/* Since 2021 badge */}
             <div className="absolute -top-6 -left-6 z-10 bg-burgundy text-ivory w-28 h-28 rounded-full flex flex-col items-center justify-center shadow-2xl shadow-burgundy/30 border-4 border-ivory">
               <span className="font-body text-xs tracking-widest uppercase text-ivory/60 leading-none">
                 Since

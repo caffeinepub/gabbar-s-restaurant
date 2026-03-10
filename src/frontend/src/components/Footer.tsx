@@ -13,6 +13,18 @@ const scrollTo = (href: string) => {
   document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
 };
 
+function TelLink({ tel, display }: { tel: string; display: string }) {
+  return (
+    <a
+      href={`tel:${tel}`}
+      data-ocid="footer.phone.link"
+      className="hover:text-saffron transition-colors duration-200 underline underline-offset-2 decoration-saffron/30 hover:decoration-saffron"
+    >
+      {display}
+    </a>
+  );
+}
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const hostname =
@@ -20,7 +32,6 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-charcoal border-t border-saffron/20">
-      {/* Top ornament */}
       <div className="h-1 bg-gradient-to-r from-transparent via-saffron/60 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -46,7 +57,6 @@ export default function Footer() {
               the warm hearths of Punjab. Authenticity served since 2021.
             </p>
 
-            {/* Social */}
             <div className="flex items-center gap-4 mt-6">
               <button
                 type="button"
@@ -74,7 +84,6 @@ export default function Footer() {
               </button>
             </div>
 
-            {/* Tagline */}
             <div className="mt-8 font-display text-sm italic text-saffron/60">
               "Where every meal is a royal memory."
             </div>
@@ -127,16 +136,20 @@ export default function Footer() {
                 <div className="text-saffron/60 text-xs tracking-wider uppercase mb-1">
                   Phone
                 </div>
-                <div>+91 79837 11781 / +91 90456 03226</div>
+                <div>
+                  <TelLink tel="+917983711781" display="+91 79837 11781" />
+                  {" / "}
+                  <TelLink tel="+919045603226" display="+91 90456 03226" />
+                </div>
                 <div className="mt-2 text-xs text-cream-text/50">
                   <span className="text-saffron/60">
                     Group Booking / Catering:
                   </span>{" "}
-                  +91 90456 03226
+                  <TelLink tel="+919045603226" display="+91 90456 03226" />
                 </div>
                 <div className="mt-1 text-xs text-cream-text/50">
                   <span className="text-saffron/60">Support & Complaints:</span>{" "}
-                  +91 91939 97843
+                  <TelLink tel="+919193997843" display="+91 91939 97843" />
                 </div>
               </div>
               <div>
@@ -149,8 +162,35 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-saffron/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* FSSAI & GST details */}
+        <div className="mt-10 pt-6 border-t border-saffron/10">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-10 font-body text-xs text-cream-text/50">
+            <div className="flex items-center gap-2">
+              <span className="inline-block px-2 py-0.5 border border-saffron/20 rounded text-saffron/60 font-semibold tracking-wider uppercase text-[10px]">
+                FSSAI
+              </span>
+              <span>
+                Lic. No.{" "}
+                <span className="text-cream-text/70 font-medium tracking-wider">
+                  22723303000084
+                </span>
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="inline-block px-2 py-0.5 border border-saffron/20 rounded text-saffron/60 font-semibold tracking-wider uppercase text-[10px]">
+                GST
+              </span>
+              <span>
+                GSTIN:{" "}
+                <span className="text-cream-text/70 font-medium tracking-wider">
+                  09AIMPY4836A1ZW
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-6 pt-6 border-t border-saffron/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-body text-xs text-cream-text/40">
             © {currentYear} Gabbar's. All rights reserved.
           </p>
