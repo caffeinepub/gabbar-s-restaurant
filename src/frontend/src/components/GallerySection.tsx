@@ -54,7 +54,7 @@ const galleryImages: GalleryImage[] = [
     span: "normal",
   },
   {
-    src: "/assets/generated/biryani.dim_600x400.jpg",
+    src: "/assets/generated/chicken-biryani.dim_600x400.jpg",
     alt: "Dum Biryani in handi",
     caption: "Handi Dum Biryani",
     span: "normal",

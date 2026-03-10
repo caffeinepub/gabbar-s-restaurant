@@ -151,7 +151,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Murg Tandoori – Jarda",
       description: "Gabbar Mange – Murg Tandoori Tikka, Jarda style.",
       price: 290,
-      image: "/assets/generated/afghani-chicken.dim_600x400.jpg",
+      image: "/assets/generated/tandoori-chicken.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
@@ -217,7 +217,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Afghani Chicken",
       description: "Ramgarh ke Afghani Chicken – rich, creamy & smoky.",
       price: 279,
-      image: "/assets/generated/afghani-chicken.dim_600x400.jpg",
+      image: "/assets/generated/tandoori-chicken.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
@@ -255,7 +255,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       description:
         "Veeru ki Taakat ka Raaz – stuffed potato paratha served with curd & butter.",
       price: 59,
-      image: "/assets/generated/aloo-parantha.dim_600x400.jpg",
+      image: "/assets/generated/paneer-parantha.dim_600x400.jpg",
     },
     {
       name: "Paneer Parantha",
@@ -273,7 +273,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Pyaaz Parantha",
       description: "Onion stuffed paratha, crispy on tawa with desi ghee.",
       price: 69,
-      image: "/assets/generated/aloo-parantha.dim_600x400.jpg",
+      image: "/assets/generated/paneer-parantha.dim_600x400.jpg",
     },
     {
       name: "Chole Bhature",
@@ -306,13 +306,13 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Rice Plain",
       description: "Arre O Samba, Laa to Zara Biryani – steamed plain rice.",
       price: 99,
-      image: "/assets/generated/biryani.dim_600x400.jpg",
+      image: "/assets/generated/chicken-biryani.dim_600x400.jpg",
     },
     {
       name: "Rice Jeera",
       description: "Cumin tempered steamed rice.",
       price: 109,
-      image: "/assets/generated/biryani.dim_600x400.jpg",
+      image: "/assets/generated/chicken-biryani.dim_600x400.jpg",
     },
     {
       name: "Matar Pulao",
@@ -402,7 +402,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Veg Fried Rice",
       description: "Stir-fried rice with mixed vegetables.",
       price: 139,
-      image: "/assets/generated/biryani.dim_600x400.jpg",
+      image: "/assets/generated/chicken-biryani.dim_600x400.jpg",
     },
     {
       name: "Chilly Paneer (Dry/Gravy)",
@@ -514,7 +514,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Chicken Manchurian",
       description: "Crispy chicken in Manchurian gravy.",
       price: 249,
-      image: "/assets/generated/afghani-chicken.dim_600x400.jpg",
+      image: "/assets/generated/tandoori-chicken.dim_600x400.jpg",
       badge: "Non-Veg",
     },
     {
@@ -758,7 +758,7 @@ const orderMenuData: Record<string, OrderDish[]> = {
       name: "Boondi Raita",
       description: "Chilled yoghurt with crispy boondi and spices.",
       price: 69,
-      image: "/assets/generated/boondi-raita.dim_600x400.jpg",
+      image: "/assets/generated/mix-veg-raita.dim_600x400.jpg",
     },
     {
       name: "Mix Veg Raita",

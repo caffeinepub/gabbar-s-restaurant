@@ -27,7 +27,7 @@ const featuredDishes: Dish[] = [
     description:
       "Long-grain Basmati sealed in a handi with saffron milk, whole spices, and caramelised onions.",
     price: "₹580",
-    image: "/assets/generated/biryani.dim_600x400.jpg",
+    image: "/assets/generated/chicken-biryani.dim_600x400.jpg",
     badge: "Signature",
     isVeg: false,
   },
