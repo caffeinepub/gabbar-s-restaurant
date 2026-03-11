@@ -1,28 +1,54 @@
-import { Menu, X } from "lucide-react";
+import { Menu, MessageCircle, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+import { IMAGES } from "../assets/images";
 
 interface NavbarProps {
   scrolled: boolean;
-  onAdminClick: () => void;
 }
 
+const WA_URL =
+  "https://wa.me/917983711781?text=Hi%2C%20I%27d%20like%20to%20place%20an%20order%20at%20Gabbar%27s!";
+
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Order", href: "#order" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "About", href: "#about" },
-  { label: "Reservations", href: "#reservations" },
-  { label: "Contact", href: "#contact" },
+  { label: "Menu", href: "/#menu", isRoute: false, anchor: "#menu" },
+  { label: "Order", href: "/#order", isRoute: false, anchor: "#order" },
+  { label: "Track Order", href: "/track-order", isRoute: true, anchor: null },
+  { label: "Loyalty", href: "/loyalty", isRoute: true, anchor: null },
+  {
+    label: "Reservations",
+    href: "/#reservations",
+    isRoute: false,
+    anchor: "#reservations",
+  },
+  { label: "Gallery", href: "/#gallery", isRoute: false, anchor: "#gallery" },
+  { label: "Contact", href: "/#contact", isRoute: false, anchor: "#contact" },
 ];
 
-export default function Navbar({ scrolled, onAdminClick }: NavbarProps) {
+export default function Navbar({ scrolled }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const handleLinkClick = (href: string) => {
+  const handleLinkClick = (link: (typeof navLinks)[0]) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (link.isRoute) {
+      window.location.href = link.href;
+    } else if (link.anchor) {
+      const isHome =
+        window.location.pathname === "/" ||
+        window.location.pathname.endsWith("/gabbars-restaurant") ||
+        window.location.pathname.endsWith("/gabbars-restaurant/");
+      if (isHome) {
+        const el = document.querySelector(link.anchor);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.location.href = link.href;
+      }
+    }
+  };
+
+  const handleLogoClick = () => {
+    setMobileOpen(false);
+    window.location.href = "/";
   };
 
   return (
@@ -30,37 +56,44 @@ export default function Navbar({ scrolled, onAdminClick }: NavbarProps) {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-charcoal/95 backdrop-blur-md shadow-2xl"
-          : "bg-transparent"
+          : "bg-charcoal/80 backdrop-blur-sm"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-4">
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between py-3">
         {/* Logo */}
         <button
           type="button"
-          onClick={() => handleLinkClick("#home")}
-          className="flex flex-col leading-tight group text-left"
+          onClick={handleLogoClick}
+          className="flex items-center gap-3 group text-left"
           data-ocid="nav.link"
         >
-          <span
-            className="font-display text-gold text-2xl font-bold tracking-wide leading-none"
-            style={{ fontWeight: 700 }}
-          >
-            Gabbar's
-          </span>
-          <span className="font-body text-saffron text-xs tracking-[0.1em] italic mt-0.5 group-hover:text-gold transition-colors">
-            Ab Goli Nahi... Khaana Kha!
-          </span>
+          <img
+            src={IMAGES.logo}
+            alt="Gabbar's Restaurant Logo"
+            className="h-12 w-auto object-contain"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = "none";
+            }}
+          />
+          <div className="flex flex-col leading-tight">
+            <span className="font-display text-gold text-xl font-bold tracking-wide leading-none">
+              Gabbar's
+            </span>
+            <span className="font-body text-saffron text-[10px] tracking-[0.1em] italic mt-0.5 group-hover:text-gold transition-colors">
+              Ab Goli Nahi... Khaana Kha!
+            </span>
+          </div>
         </button>
 
         {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
             <li key={link.href}>
               <button
                 type="button"
-                data-ocid={`nav.${link.label.toLowerCase()}.link`}
-                onClick={() => handleLinkClick(link.href)}
-                className="font-body text-sm tracking-wider uppercase text-cream-text hover:text-gold transition-colors duration-300 relative group"
+                data-ocid={`nav.${link.label.toLowerCase().replace(/\s+/g, "-")}.link`}
+                onClick={() => handleLinkClick(link)}
+                className="font-body text-xs tracking-wider uppercase text-cream-text hover:text-gold transition-colors duration-300 relative group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-saffron transition-all duration-300 group-hover:w-full" />
@@ -68,20 +101,24 @@ export default function Navbar({ scrolled, onAdminClick }: NavbarProps) {
             </li>
           ))}
           <li>
-            <button
-              type="button"
-              data-ocid="nav.reserve.button"
-              onClick={() => handleLinkClick("#reservations")}
-              className="font-body text-sm tracking-wider uppercase px-5 py-2 border border-saffron text-saffron hover:bg-saffron hover:text-charcoal transition-all duration-300 rounded-sm font-medium"
+            <a
+              href={WA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-ocid="nav.whatsapp.button"
+              className="font-body text-xs tracking-wider uppercase px-4 py-2 bg-[#25D366] text-white hover:bg-[#1fb058] transition-all duration-300 rounded-sm font-semibold flex items-center gap-1.5"
             >
-              Reserve Table
-            </button>
+              <MessageCircle size={13} />
+              WhatsApp
+            </a>
           </li>
           <li>
             <button
               type="button"
               data-ocid="nav.admin.link"
-              onClick={onAdminClick}
+              onClick={() => {
+                window.location.href = "/admin";
+              }}
               className="font-body text-xs tracking-widest uppercase text-cream-text/35 hover:text-cream-text/70 transition-colors duration-300"
             >
               Admin
@@ -92,7 +129,7 @@ export default function Navbar({ scrolled, onAdminClick }: NavbarProps) {
         {/* Mobile hamburger */}
         <button
           type="button"
-          className="md:hidden text-cream-text hover:text-gold transition-colors p-2"
+          className="lg:hidden text-cream-text hover:text-gold transition-colors p-2"
           onClick={() => setMobileOpen((o) => !o)}
           aria-label="Toggle menu"
           data-ocid="nav.toggle"
@@ -109,15 +146,15 @@ export default function Navbar({ scrolled, onAdminClick }: NavbarProps) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden bg-charcoal/98 backdrop-blur-md border-t border-saffron/20 overflow-hidden"
+            className="lg:hidden bg-charcoal/98 backdrop-blur-md border-t border-saffron/20 overflow-hidden"
           >
             <ul className="px-6 py-6 flex flex-col gap-5">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <button
                     type="button"
-                    data-ocid={`nav.mobile.${link.label.toLowerCase()}.link`}
-                    onClick={() => handleLinkClick(link.href)}
+                    data-ocid={`nav.mobile.${link.label.toLowerCase().replace(/\s+/g, "-")}.link`}
+                    onClick={() => handleLinkClick(link)}
                     className="font-body text-sm tracking-widest uppercase text-cream-text hover:text-gold transition-colors block w-full text-left"
                   >
                     {link.label}
@@ -125,14 +162,16 @@ export default function Navbar({ scrolled, onAdminClick }: NavbarProps) {
                 </li>
               ))}
               <li>
-                <button
-                  type="button"
-                  data-ocid="nav.mobile.reserve.button"
-                  onClick={() => handleLinkClick("#reservations")}
-                  className="font-body text-sm tracking-wider uppercase px-5 py-2.5 border border-saffron text-saffron hover:bg-saffron hover:text-charcoal transition-all duration-300 inline-block rounded-sm font-medium"
+                <a
+                  href={WA_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-ocid="nav.mobile.whatsapp.button"
+                  className="font-body text-sm tracking-wider uppercase px-5 py-2.5 bg-[#25D366] text-white hover:bg-[#1fb058] transition-all duration-300 inline-flex items-center gap-2 rounded-sm font-semibold"
                 >
-                  Reserve Table
-                </button>
+                  <MessageCircle size={15} />
+                  Order on WhatsApp
+                </a>
               </li>
               <li>
                 <button
@@ -140,7 +179,7 @@ export default function Navbar({ scrolled, onAdminClick }: NavbarProps) {
                   data-ocid="nav.mobile.admin.link"
                   onClick={() => {
                     setMobileOpen(false);
-                    onAdminClick();
+                    window.location.href = "/admin";
                   }}
                   className="font-body text-xs tracking-widest uppercase text-cream-text/40 hover:text-cream-text/70 transition-colors block w-full text-left"
                 >

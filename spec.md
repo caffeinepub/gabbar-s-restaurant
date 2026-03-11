@@ -1,39 +1,31 @@
 # Gabbar's Restaurant
 
 ## Current State
-- Backend has `Order` and `Reservation` types, `placeOrder`, `getOrders`, `addReservation`, `getAllReservations`.
-- Orders have no status field. No ability to update order status.
-- Admin panel shows orders and reservations in a table view. No status column or controls.
-- No PetPooja integration exists anywhere.
+Workspace is empty — full rebuild required. Based on conversation history, the site is a rich restaurant website for Gabbar's in Saifai, Etawah, UP with menu, ordering, gallery, admin panel, PetPooja integration, and Google Reviews.
 
 ## Requested Changes (Diff)
 
 ### Add
-- `OrderStatus` variant type: `#pending | #confirmed | #preparing | #delivered | #cancelled`
-- `status` field on `Order` type (defaults to `#pending` on creation)
-- `updateOrderStatus(orderId: Nat, status: OrderStatus)` backend function
-- `getOrderById(orderId: Nat)` or orders returned with their index ID
-- Orders now returned as `OrderWithId` (includes `id: Nat`)
-- PetPooja integration tab in admin panel:
-  - Settings card to save PetPooja API key and outlet ID (stored in backend)
-  - Per-order "Push to PetPooja" button (uses HTTP outcalls to POST order to PetPooja API)
-  - Connection test button
-- `savePetpoojaConfig(apiKey: Text, outletId: Text)` and `getPetpoojaConfig()` backend functions
-- `pushOrderToPetpooja(orderId: Nat)` backend function (HTTP outcall)
-- Status badge column and status change dropdown in the admin Orders table
+- **Logo**: Use generated Gabbar's logo in navbar and hero section
+- **WhatsApp Order Button**: Floating sticky button + CTA button linking to `https://wa.me/917983711781` with pre-filled message "Hi, I'd like to place an order at Gabbar's!"
+- **Live Order Tracking Page**: Public page `/track-order` where customers enter their Order ID to see real-time status (Pending → Confirmed → Preparing → Out for Delivery → Delivered). Shows order items, total, estimated time.
+- **Customer Loyalty / Coupon System**:
+  - Customers earn 1 point per ₹10 spent
+  - Points redeemable as discount coupons (100 points = ₹10 off)
+  - Admin can create coupon codes with fixed or % discount
+  - Customers can apply coupon at checkout
+  - Loyalty card page showing points balance and transaction history
 
 ### Modify
-- `placeOrder` sets `status = #pending` on new orders
-- `getOrders` returns `[OrderWithId]` (includes `id` field)
-- Admin Orders table: add Status column with colored badge and a select dropdown to change status
-- Admin panel: add a third tab "PetPooja" for integration settings
+- Rebuild entire site with all existing features intact (menu, ordering, reservations, gallery, admin panel, PetPooja integration, Google Reviews, FSSAI/GST details, tap-to-call)
+- Use new generated logo in navbar
 
 ### Remove
-- Nothing removed
+- Nothing from existing feature set
 
 ## Implementation Plan
-1. Update backend: add OrderStatus, id tracking, updateOrderStatus, PetPooja config storage and HTTP outcall push function
-2. Select http-outcalls component for backend HTTP capability
-3. Regenerate Motoko backend with new types and functions
-4. Update frontend AdminPanel: add status badge + select in orders table, add PetPooja settings tab
-5. Validate and deploy
+1. Backend: Orders (place, get by ID for tracking, update status), Reservations, Loyalty points (earn/redeem), Coupon codes (create/validate), Admin management
+2. Frontend pages: Home (hero, menu, gallery, reviews, contact), Order page, Track Order page, Loyalty page, Admin panel
+3. WhatsApp floating button on all pages
+4. Order tracking: public lookup by order ID, polling for status updates
+5. Loyalty: phone/email-based account, points earned on order completion, coupon redemption at checkout

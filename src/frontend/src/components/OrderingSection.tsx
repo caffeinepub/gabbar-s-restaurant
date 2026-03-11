@@ -18,6 +18,8 @@ import { toast } from "sonner";
 import { IMAGES } from "../assets/images";
 import { OrderType } from "../backend.d";
 import { useActor } from "../hooks/useActor";
+import { addLoyaltyPoints } from "../pages/LoyaltyPage";
+import { saveOrderLocally } from "../pages/TrackOrderPage";
 import { OrnamentDivider } from "./HeroSection";
 import VegNonVegIcon from "./VegNonVegIcon";
 
@@ -1062,6 +1064,7 @@ function CheckoutForm({
   const [address, setAddress] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [placedOrderId, setPlacedOrderId] = useState("");
   const [orderError, setOrderError] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -1083,7 +1086,7 @@ function CheckoutForm({
       const backendOrderType =
         orderType === "delivery" ? OrderType.delivery : OrderType.pickup;
 
-      await actor.placeOrder(
+      const result = await actor.placeOrder(
         name.trim(),
         phone.trim(),
         orderType === "delivery" ? address.trim() : "Pickup at restaurant",
@@ -1091,6 +1094,24 @@ function CheckoutForm({
         backendItems,
         BigInt(total),
       );
+      const newOrderId = result.id.toString();
+      setPlacedOrderId(newOrderId);
+      saveOrderLocally({
+        id: newOrderId,
+        customerName: name.trim(),
+        phone: phone.trim(),
+        items: cart.map((i) => ({
+          name: i.name,
+          quantity: i.quantity,
+          price: i.price,
+        })),
+        total,
+        orderType,
+        address:
+          orderType === "delivery" ? address.trim() : "Pickup at restaurant",
+        status: "pending",
+        timestamp: Date.now(),
+      });
 
       setOrderSuccess(true);
       toast.success("Order placed successfully! 🎉");
@@ -1146,9 +1167,28 @@ function CheckoutForm({
             <span className="text-gold font-bold">₹{total}</span>
           </div>
         </div>
-        <p className="font-body text-xs text-cream-text/40">
+        {placedOrderId && (
+          <div className="bg-saffron/10 border border-saffron/30 rounded-sm px-4 py-3 mb-4">
+            <div className="font-body text-xs text-saffron/70 uppercase tracking-wider mb-1">
+              Your Order ID
+            </div>
+            <div className="font-display text-gold text-2xl font-bold">
+              #{placedOrderId}
+            </div>
+            <div className="font-body text-xs text-cream-text/60 mt-1">
+              Save this to track your order
+            </div>
+          </div>
+        )}
+        <p className="font-body text-xs text-cream-text/40 mb-3">
           We'll call you at {phone} to confirm your order.
         </p>
+        <a
+          href="/track-order"
+          className="inline-block font-body text-xs tracking-widest uppercase px-5 py-2.5 border border-saffron/40 text-saffron hover:bg-saffron/10 transition-all rounded-sm"
+        >
+          Track Your Order →
+        </a>
       </motion.div>
     );
   }

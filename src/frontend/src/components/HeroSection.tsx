@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MapPin, MessageCircle } from "lucide-react";
 import { motion } from "motion/react";
 import { IMAGES } from "../assets/images";
 
@@ -43,6 +43,9 @@ const OrnamentDivider = ({ light = false }: { light?: boolean }) => (
 
 export { OrnamentDivider };
 
+const WA_URL =
+  "https://wa.me/917983711781?text=Hi%2C%20I%27d%20like%20to%20place%20an%20order%20at%20Gabbar%27s!";
+
 export default function HeroSection() {
   const scrollTo = (id: string) => {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
@@ -57,26 +60,49 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `url(${IMAGES.heroBanner})`,
-          opacity: 0.75,
+          backgroundImage: `url(${IMAGES.heroPage})`,
+          opacity: 0.65,
         }}
       />
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/45 to-charcoal/75" />
+      <div className="absolute inset-0 bg-gradient-to-b from-charcoal/75 via-charcoal/50 to-charcoal/80" />
       {/* Warm golden vignette */}
-      <div className="absolute inset-0 bg-radial from-transparent via-transparent to-charcoal/50" />
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 40%, oklch(0.10 0.03 55) 100%)",
+        }}
+      />
 
       {/* Decorative top border */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-saffron to-transparent opacity-60" />
 
       {/* Content */}
-      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-20">
-        {/* Small tagline */}
+      <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-24">
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="mb-4 flex justify-center"
+        >
+          <img
+            src={IMAGES.logo}
+            alt="Gabbar's Restaurant"
+            className="h-28 md:h-36 w-auto object-contain drop-shadow-2xl"
+            onError={(e) => {
+              (e.currentTarget as HTMLImageElement).style.display = "none";
+            }}
+          />
+        </motion.div>
+
+        {/* Since badge */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-6"
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mb-4"
         >
           <span className="font-body text-xs tracking-[0.35em] uppercase text-gold border border-gold/30 px-4 py-1.5 rounded-sm">
             Since 2021
@@ -87,13 +113,11 @@ export default function HeroSection() {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.4 }}
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-ivory font-bold leading-tight mb-4"
+          transition={{ duration: 0.9, delay: 0.45 }}
+          className="font-display text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-ivory font-bold leading-tight mb-3"
           style={{ textShadow: "0 4px 40px rgba(0,0,0,0.5)" }}
         >
-          A Royal Feast
-          <br />
-          <span className="text-gold">Awaits</span>
+          <span className="text-gold">GABBAR'S</span>
         </motion.h1>
 
         {/* Ornament */}
@@ -101,33 +125,34 @@ export default function HeroSection() {
           initial={{ opacity: 0, scaleX: 0 }}
           animate={{ opacity: 1, scaleX: 1 }}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="my-6"
+          className="my-5"
         >
           <OrnamentDivider light />
         </motion.div>
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9 }}
-          className="font-body text-sm text-ivory/90 tracking-widest max-w-2xl mx-auto mb-6"
-        >
-          Slow-cooked traditions · Tandoor-kissed flavours · Timeless recipes
-        </motion.p>
 
         {/* Punch line */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, delay: 1.05 }}
-          className="mb-10"
+          transition={{ duration: 0.7, delay: 0.85 }}
+          className="mb-3"
         >
           <span className="font-display text-2xl md:text-3xl text-saffron drop-shadow-lg">
             "Ab Goli Nahi...{" "}
             <span className="text-gold italic">Khaana Kha!"</span>
           </span>
         </motion.div>
+
+        {/* Location */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          className="font-body text-xs text-ivory/70 tracking-widest flex items-center justify-center gap-1.5 mb-8"
+        >
+          <MapPin size={12} className="text-saffron" />
+          Saifai, Etawah, Uttar Pradesh
+        </motion.p>
 
         {/* CTA Buttons */}
         <motion.div
@@ -138,20 +163,30 @@ export default function HeroSection() {
         >
           <button
             type="button"
-            onClick={() => scrollTo("#menu")}
-            data-ocid="hero.menu.primary_button"
+            onClick={() => scrollTo("#order")}
+            data-ocid="hero.order.primary_button"
             className="font-body text-sm tracking-widest uppercase px-10 py-4 bg-saffron text-charcoal font-semibold hover:bg-gold transition-all duration-300 rounded-sm shadow-lg shadow-saffron/20 hover:shadow-gold/30 hover:scale-105"
           >
-            Explore Menu
+            Order Now
           </button>
           <button
             type="button"
-            onClick={() => scrollTo("#reservations")}
-            data-ocid="hero.reserve.secondary_button"
+            onClick={() => scrollTo("#menu")}
+            data-ocid="hero.menu.secondary_button"
             className="font-body text-sm tracking-widest uppercase px-10 py-4 border-2 border-gold/60 text-gold hover:border-gold hover:bg-gold/10 transition-all duration-300 rounded-sm font-medium"
           >
-            Reserve a Table
+            View Menu
           </button>
+          <a
+            href={WA_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ocid="hero.whatsapp.button"
+            className="font-body text-sm tracking-widest uppercase px-8 py-4 bg-[#25D366] text-white hover:bg-[#1fb058] transition-all duration-300 rounded-sm font-semibold flex items-center gap-2 shadow-lg shadow-[#25D366]/20"
+          >
+            <MessageCircle size={16} />
+            Order on WhatsApp
+          </a>
         </motion.div>
       </div>
 
